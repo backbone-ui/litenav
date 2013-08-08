@@ -1,0 +1,52 @@
+.visible {
+	display:block !important;
+}
+
+.ui-litenav {
+	
+	.ui-litenav-control {
+		display: none;
+	}
+	
+	ul.nav {
+		list-style-type: none;
+		
+		li {
+			float: left;
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	
+	.ui-litenav {
+		
+		.ui-litenav-control {
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 10px;
+		}
+		
+		nav {
+			display: block;
+			width: 40px;
+			cursor: hand;
+			cursor:pointer;
+			
+			 ul.nav {
+				display: none;
+				position: absolute;
+				top: 45px;
+				right: 0px;
+				background-color:rgba(255,255,255,.9);
+				z-index:999;
+				
+				li {
+					float: none;
+				}
+			}
+		}
+	}
+}
+
