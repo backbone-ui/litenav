@@ -1,6 +1,9 @@
 .visible {
   display: block !important;
 }
+.ui-litenav-active {
+	display: block !important;
+}
 .ui-litenav .ui-litenav-control {
   display: none;
 }
