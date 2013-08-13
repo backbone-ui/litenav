@@ -21,14 +21,37 @@
 			navEl : ".nav", 
 		},
 		
+		initialize: function(){
+			var self = this;
+			window.addEventListener('resize', function(){ self.resize() }, false);
+			//
+			// $(window).on('resize', this.resize);
+			// return View.prototype.initialize.apply(this, arguments );
+		},
+		
 		events: {
 			"click .ui-litenav-control": "toggle",
 		},
 		
 		toggle: function(e) {
 			e.preventDefault();
-			$( this.options.navEl ).toggleClass('visible');
-		}, 
+			$( this.options.navEl ).toggleClass('ui-litenav-active');
+		},
+		
+		resize: function() {
+			$( this.options.navEl ).removeClass('ui-litenav-active');
+		},
+		
+		postRender: function() {
+			// check if we have the sidenav control
+			var control = $(this.el).find(".ui-litenav-control");
+			if( !control.length ) { 
+				// add it to the el
+				var $el = $('<a href="" class="ui-litenav-control"><img src="../assets/img/menu-dark.svg"></a>');
+				$(this.el).find("header").prepend($el);
+				$(this.el).prepend($el);
+			}
+		} 
 		
 		
 		
