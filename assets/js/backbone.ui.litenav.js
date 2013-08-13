@@ -24,9 +24,6 @@
 		initialize: function(){
 			var self = this;
 			window.addEventListener('resize', function(){ self.resize() }, false);
-			//
-			// $(window).on('resize', this.resize);
-			// return View.prototype.initialize.apply(this, arguments );
 		},
 		
 		events: {
