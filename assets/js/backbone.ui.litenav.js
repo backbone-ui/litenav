@@ -47,13 +47,11 @@
 				var $el = $('<a href="" class="ui-litenav-control"><img src="../assets/img/menu-dark.svg"></a>');
 				$(this.el).find("header").prepend($el);
 				$(this.el).prepend($el);
+				
+				$( this.options.navEl ).addClass("ui-litenav-target");
+				
 			}
 		} 
-		
-		
-		
-		
-		
 	});
 	
 })(this._, this.Backbone);
