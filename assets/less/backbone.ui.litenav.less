@@ -2,13 +2,13 @@
 	display: block !important;
 }
 
+.ui-litenav .ui-litenav-control {
+  display: none;
+}
+
 .ui-litenav {
 	
-	.ui-litenav-control {
-		display: none;
-	}
-	
-	ul.nav {
+	ul {
 		list-style-type: none;
 		
 		li {
@@ -28,25 +28,22 @@
 			right: 10px;
 		}
 		
-		nav {
-			display: block;
-			width: 40px;
-			cursor: hand;
-			cursor:pointer;
+		.ui-litenav-target {
+  			display: none;
+  		}
+		
+		ul {
+			position: absolute;
+    		top: 45px;
+    		right: 0px;
+    		background-color: rgba(255, 255, 255, 0.9);
+    		z-index: 999;
 			
-			 ul.nav {
-				display: none;
-				position: absolute;
-				top: 45px;
-				right: 0px;
-				background-color:rgba(255,255,255,.9);
-				z-index:999;
-				
-				li {
-					float: none;
-				}
+			li {
+				float: none;
 			}
 		}
+		
 	}
 }
 
