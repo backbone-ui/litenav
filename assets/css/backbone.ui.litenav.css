@@ -1,13 +1,13 @@
 .ui-litenav-active {
-	display: block !important;
+  display: block !important;
 }
 .ui-litenav .ui-litenav-control {
   display: none;
 }
-.ui-litenav ul.nav {
+.ui-litenav ul {
   list-style-type: none;
 }
-.ui-litenav ul.nav li {
+.ui-litenav ul li {
   float: left;
 }
 @media screen and (max-width: 767px) {
@@ -17,21 +17,17 @@
     top: 0;
     right: 10px;
   }
-  .ui-litenav nav {
-    display: block;
-    width: 40px;
-    cursor: hand;
-    cursor: pointer;
-  }
-  .ui-litenav nav ul.nav {
+  .ui-litenav .ui-litenav-target {
     display: none;
+  }
+  .ui-litenav ul {
     position: absolute;
     top: 45px;
     right: 0px;
     background-color: rgba(255, 255, 255, 0.9);
     z-index: 999;
   }
-  .ui-litenav nav ul.nav li {
+  .ui-litenav ul li {
     float: none;
   }
 }
