@@ -18,7 +18,8 @@
 		el : '.ui-litenav',
 
 		options : {
-			navEl : ".nav"
+			navEl : ".nav",
+			maskEl : ".ui-litenav-mask"
 		},
 
 		initialize: function( options ){
@@ -30,15 +31,20 @@
 
 		events: {
 			"click .ui-litenav-control": "toggle",
+			"click .ui-litenav-mask": "toggle"
 		},
 
 		toggle: function(e) {
 			e.preventDefault();
 			$( this.options.navEl ).toggleClass('ui-litenav-active');
+			$( this.options.maskEl ).toggleClass('ui-litenav-active');
+			// $( this.el ).toggleClass('ui-litenav-active');
 		},
 
 		resize: function() {
 			$( this.options.navEl ).removeClass('ui-litenav-active');
+			$( this.options.maskEl ).removeClass('ui-litenav-active');
+			// $( this.el ).removeClass('ui-litenav-active');
 		},
 
 		postRender: function() {
