@@ -31,20 +31,23 @@
 
 		events: {
 			"click .ui-litenav-control": "toggle",
-			"click .ui-litenav-mask": "toggle"
+			"click .ui-litenav-mask": "toggle",
+			"click .ui-litenav-target a": "hideNav"
 		},
 
 		toggle: function(e) {
 			e.preventDefault();
 			$( this.options.navEl ).toggleClass('ui-litenav-active');
 			$( this.options.maskEl ).toggleClass('ui-litenav-active');
-			// $( this.el ).toggleClass('ui-litenav-active');
+		},
+		
+		hideNav: function(e) {
+			$( ".ui-litenav-target" ).removeClass('ui-litenav-active');
 		},
 
 		resize: function() {
 			$( this.options.navEl ).removeClass('ui-litenav-active');
 			$( this.options.maskEl ).removeClass('ui-litenav-active');
-			// $( this.el ).removeClass('ui-litenav-active');
 		},
 
 		postRender: function() {
