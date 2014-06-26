@@ -1,6 +1,6 @@
 // Backbone.js Litenav extension
 //
-// Created by: Lyndel Thomas (@ryndel)
+// Initiated by: Lyndel Thomas (@ryndel)
 // Source: https://github.com/backbone-ui/litenav
 //
 // Licensed under the MIT license:
