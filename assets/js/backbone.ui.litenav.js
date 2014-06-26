@@ -18,7 +18,9 @@
 		el : '.ui-litenav',
 
 		options : {
-			navEl : ".nav"
+			navEl : ".nav",
+			maskEl : ".ui-litenav-mask",
+			preventDefault: false
 		},
 
 		initialize: function( options ){
@@ -30,15 +32,33 @@
 
 		events: {
 			"click .ui-litenav-control": "toggle",
+			"click .ui-litenav-mask": "toggle",
+			"click .ui-litenav-target a": "clickNav"
 		},
 
 		toggle: function(e) {
 			e.preventDefault();
 			$( this.options.navEl ).toggleClass('ui-litenav-active');
+			$( this.options.maskEl ).toggleClass('ui-litenav-active');
+		},
+
+		clickNav: function(e) {
+			if( this.options.preventDefault ){
+				e.preventDefault();
+				var url = $(e.target).closest("a").attr("href");
+				// better way to define if this is an ajax URL...
+				var isHash = (url.substr(0,1) == "#");
+				if( url ){
+					if( isHash ){ app.navigate( url, true ) } else { window.location = url; }
+				}
+			}
+			$( ".ui-litenav-target" ).removeClass('ui-litenav-active');
+
 		},
 
 		resize: function() {
 			$( this.options.navEl ).removeClass('ui-litenav-active');
+			$( this.options.maskEl ).removeClass('ui-litenav-active');
 		},
 
 		postRender: function() {
