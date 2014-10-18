@@ -81,7 +81,7 @@
 			var control = $(this.el).find(".ui-litenav-control");
 			if( !control.length ) {
 				// add it to the el
-				var $el = $('<a href="" class="ui-litenav-control"><img src="../assets/img/menu-dark.svg"></a>');
+				var $el = $('<a href="" class="ui-litenav-control"></a>');
 				$(this.el).find("header").prepend($el);
 				$(this.el).prepend($el);
 
