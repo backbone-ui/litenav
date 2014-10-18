@@ -6,14 +6,29 @@
 // Licensed under the MIT license:
 // http://makesites.org/licenses/MIT
 
-(function(_, Backbone) {
+(function (lib) {
 
-	// fallbacks
-	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
-	// Support backbone app (if available)
-	var View = ( typeof APP != "undefined" && !_.isUndefined( APP.View) ) ? APP.View : Backbone.View;
+	//"use strict";
 
-	Backbone.UI.Litenav = View.extend({
+	// Support module loaders
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery', 'underscore', 'backbone'], lib);
+	} else if ( typeof module === "object" && module && typeof module.exports === "object" ){
+		// Expose as module.exports in loaders that implement CommonJS module pattern.
+		module.exports = lib;
+	} else {
+		// Browser globals
+		lib(window.jQuery, window._, window.Backbone);
+	}
+
+}(function($, _, Backbone) {
+
+	// support for Backbone APP() view if available...
+	var isAPP = ( typeof APP !== "undefined" );
+	var View = ( isAPP && typeof APP.View !== "undefined" ) ? APP.View : Backbone.View;
+	
+	var Litenav = View.extend({
 
 		el : '.ui-litenav',
 
@@ -76,4 +91,23 @@
 		}
 	});
 
-})(this._, this.Backbone);
+// update Backbone namespace regardless
+	Backbone.UI = Backbone.UI ||{};
+	Backbone.UI.Litenav = Litenav;
+
+	// If there is a window object, that at least has a document property
+	if ( typeof window === "object" && typeof window.document === "object" ) {
+		// update APP namespace
+		if( isAPP ){
+			APP.UI = APP.UI || {};
+			APP.UI.Litenav = Litenav;
+			window.APP = APP;
+		}
+		window.Backbone = Backbone;
+	}
+
+	// for module loaders:
+	return Litenav;
+
+
+}));
