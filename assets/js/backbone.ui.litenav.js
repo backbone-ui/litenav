@@ -1,33 +1,36 @@
-// Backbone.js Litenav extension
-//
-// Initiated by: Lyndel Thomas (@ryndel)
-// Source: https://github.com/backbone-ui/litenav
-//
-// Licensed under the MIT license:
-// http://makesites.org/licenses/MIT
+/*
+ * Backbone UI: Litenav
+ * Source: https://github.com/backbone-ui/litenav
+ * Copyright © Makesites.org
+ *
+ * Initiated by Lyndel Thomas (@ryndel)
+ * Distributed through [Makesites.org](http://makesites.org)
+ * Released under the [MIT license](http://makesites.org/licenses/MIT)
+ */
 
 (function (lib) {
 
 	//"use strict";
 
-	// Support module loaders
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
-		define(['jquery', 'underscore', 'backbone'], lib);
+		var deps = ['jquery', 'underscore', 'backbone']; // condition when backbone.app is part of the array?
+		define(deps, lib);
 	} else if ( typeof module === "object" && module && typeof module.exports === "object" ){
 		// Expose as module.exports in loaders that implement CommonJS module pattern.
 		module.exports = lib;
 	} else {
 		// Browser globals
-		lib(window.jQuery, window._, window.Backbone);
+		var Query = window.jQuery || window.Zepto || window.vQuery;
+		lib(Query, window._, window.Backbone, window.APP);
 	}
-
-}(function($, _, Backbone) {
+}(function ($, _, Backbone, APP) {
 
 	// support for Backbone APP() view if available...
 	var isAPP = ( typeof APP !== "undefined" );
 	var View = ( isAPP && typeof APP.View !== "undefined" ) ? APP.View : Backbone.View;
-	
+
+
 	var Litenav = View.extend({
 
 		el : '.ui-litenav',
@@ -91,16 +94,19 @@
 		}
 	});
 
-// update Backbone namespace regardless
+
+	// update Backbone namespace regardless
 	Backbone.UI = Backbone.UI ||{};
 	Backbone.UI.Litenav = Litenav;
+	if( isAPP ){
+		APP.UI = APP.UI || {};
+		APP.UI.Litenav = Backbone.UI.Litenav;
+	}
 
 	// If there is a window object, that at least has a document property
 	if ( typeof window === "object" && typeof window.document === "object" ) {
 		// update APP namespace
 		if( isAPP ){
-			APP.UI = APP.UI || {};
-			APP.UI.Litenav = Litenav;
 			window.APP = APP;
 		}
 		window.Backbone = Backbone;
@@ -108,6 +114,5 @@
 
 	// for module loaders:
 	return Litenav;
-
 
 }));
