@@ -7,7 +7,6 @@
  * Distributed through [Makesites.org](http://makesites.org)
  * Released under the [MIT license](http://makesites.org/licenses/MIT)
  */
-
 (function (lib) {
 
 	//"use strict";
@@ -27,7 +26,8 @@
 }(function ($, _, Backbone, APP) {
 
 	// support for Backbone APP() view if available...
-	var isAPP = ( typeof APP !== "undefined" );
+	APP = APP || window.APP || null;
+	var isAPP = ( APP !== null );
 	var View = ( isAPP && typeof APP.View !== "undefined" ) ? APP.View : Backbone.View;
 
 	// Shims
@@ -112,7 +112,7 @@
 	Backbone.UI.Litenav = Litenav;
 	if( isAPP ){
 		APP.UI = APP.UI || {};
-		APP.UI.Litenav = Backbone.UI.Litenav;
+		APP.UI.Litenav = Litenav;
 	}
 
 	// If there is a window object, that at least has a document property
